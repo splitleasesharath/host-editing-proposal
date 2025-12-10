@@ -1,0 +1,905 @@
+/* Host Editing Proposal Styles */
+
+/* ========================================
+   CSS Variables / Design Tokens
+   ======================================== */
+
+:root {
+  /* Primary Colors */
+  --hep-primary-purple: #31135D;
+  --hep-primary-white: #FFFFFF;
+  --hep-surface-purple: #8C97C7;
+
+  /* Text Colors */
+  --hep-text-dark: #000000;
+  --hep-text-primary: #424242;
+  --hep-text-secondary: #252525;
+  --hep-text-tertiary: #4D4D4D;
+  --hep-text-placeholder: #B5B5B5;
+  --hep-text-placeholder-light: #9C9C9C;
+
+  /* Accent Colors */
+  --hep-input-border-purple: #4B47CE;
+  --hep-reject-red: #C82333;
+  --hep-tag-background: #E4E4E4;
+  --hep-gray-border: #6B6B6B;
+  --hep-shadow-gray: #AAAAAA;
+  --hep-tag-border: #C9C9C9;
+
+  /* Fonts */
+  --hep-font-serif: 'Martel', Georgia, serif;
+  --hep-font-sans: 'Lato', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --hep-font-dm-sans: 'DM Sans', 'Lato', sans-serif;
+}
+
+/* ========================================
+   Base Container
+   ======================================== */
+
+.hep-container {
+  background-color: var(--hep-primary-white);
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: var(--hep-font-sans);
+  box-sizing: border-box;
+}
+
+.hep-container *,
+.hep-container *::before,
+.hep-container *::after {
+  box-sizing: border-box;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
+.hep-title-main {
+  font-family: var(--hep-font-serif);
+  font-weight: 900;
+  font-size: 26px;
+  color: var(--hep-text-primary);
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.hep-title-section {
+  font-family: var(--hep-font-serif);
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--hep-text-dark);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.hep-label {
+  font-family: var(--hep-font-dm-sans);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--hep-text-dark);
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+
+.hep-row-label {
+  font-family: var(--hep-font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--hep-text-primary);
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+
+.hep-description {
+  font-family: var(--hep-font-serif);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--hep-text-primary);
+  line-height: 2;
+}
+
+.hep-text-value {
+  font-family: var(--hep-font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--hep-text-primary);
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.hep-btn {
+  border-radius: 20px;
+  cursor: pointer;
+  transition: box-shadow 200ms ease;
+  font-family: var(--hep-font-sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hep-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hep-btn-primary {
+  background-color: var(--hep-primary-purple);
+  color: var(--hep-primary-white);
+  font-weight: 700;
+  font-size: 18px;
+  border: 2px solid var(--hep-primary-purple);
+  height: 44px;
+  padding: 0 24px;
+  min-width: fit-content;
+  white-space: nowrap;
+  word-spacing: 1px;
+  letter-spacing: -1px;
+}
+
+.hep-btn-primary:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(49, 19, 93, 0.3);
+}
+
+.hep-btn-secondary {
+  background-color: transparent;
+  color: var(--hep-primary-purple);
+  font-weight: 400;
+  font-size: 18px;
+  border: 1px solid var(--hep-primary-purple);
+  height: 44px;
+  padding: 0 24px;
+}
+
+.hep-btn-secondary:hover:not(:disabled) {
+  background-color: rgba(49, 19, 93, 0.05);
+}
+
+.hep-btn-destructive {
+  background-color: var(--hep-reject-red);
+  color: var(--hep-primary-white);
+  font-family: var(--hep-font-dm-sans);
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  width: 128px;
+  height: 32px;
+  transition: box-shadow 500ms ease, color 500ms ease;
+}
+
+.hep-btn-destructive:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(200, 35, 51, 0.3);
+}
+
+.hep-btn-cancel {
+  background-color: transparent;
+  border: 1px solid var(--hep-text-tertiary);
+  color: var(--hep-text-tertiary);
+  font-weight: 400;
+  font-size: 14px;
+  height: 32px;
+  padding: 0 16px;
+}
+
+.hep-btn-cancel:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* ========================================
+   Form Inputs
+   ======================================== */
+
+.hep-input-base {
+  font-family: var(--hep-font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--hep-text-secondary);
+  background-color: var(--hep-primary-white);
+  border: 1px solid var(--hep-text-tertiary);
+  border-radius: 2px;
+  box-shadow: inset -2px -2px 4px var(--hep-shadow-gray);
+  padding: 8px 12px;
+}
+
+.hep-input-base::placeholder {
+  color: var(--hep-text-placeholder);
+}
+
+.hep-input-base:focus {
+  outline: none;
+  border-color: var(--hep-primary-purple);
+}
+
+.hep-input-date {
+  composes: hep-input-base;
+}
+
+.hep-dropdown {
+  font-size: 14px;
+}
+
+.hep-dropdown::placeholder {
+  color: var(--hep-text-placeholder-light);
+}
+
+.hep-input-number {
+  composes: hep-input-base;
+}
+
+/* Multi-select input */
+.hep-multiselect {
+  font-family: var(--hep-font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--hep-text-secondary);
+  background-color: var(--hep-primary-white);
+  border: 1px solid var(--hep-input-border-purple);
+  border-radius: 4px;
+  padding: 5px 0;
+  min-height: 40px;
+}
+
+.hep-multiselect::placeholder {
+  color: var(--hep-text-placeholder);
+}
+
+/* Tags for multi-select */
+.hep-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--hep-tag-background);
+  border: 1px solid var(--hep-tag-border);
+  border-radius: 2px;
+  padding: 2px 8px;
+  font-size: 14px;
+  color: var(--hep-text-secondary);
+}
+
+.hep-tag-remove {
+  color: #999;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.hep-tag-remove:hover {
+  color: var(--hep-reject-red);
+}
+
+/* ========================================
+   Containers & Groups
+   ======================================== */
+
+.hep-group-proposal {
+  background-color: var(--hep-primary-white);
+  display: flex;
+  flex-direction: column;
+  min-width: 40px;
+  min-height: 40px;
+  overflow-y: auto;
+}
+
+.hep-editing-terms {
+  border: 1px dotted var(--hep-gray-border);
+  border-radius: 0;
+  width: 100%;
+  max-height: 920px;
+  padding: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.hep-proposal-row {
+  border: 1px dotted var(--hep-gray-border);
+  border-radius: 0;
+  width: 100%;
+  min-height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+/* ========================================
+   Collapsible Section
+   ======================================== */
+
+.hep-collapsible {
+  background-color: var(--hep-primary-purple);
+  border: 1px solid var(--hep-surface-purple);
+  border-radius: 10px;
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.hep-collapsible:hover {
+  background-color: #3d1a70;
+}
+
+.hep-collapsible-title {
+  font-family: var(--hep-font-sans);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--hep-primary-white);
+  line-height: 1.25;
+}
+
+.hep-collapsible-icon {
+  color: var(--hep-primary-white);
+  transition: transform 200ms ease;
+}
+
+.hep-collapsible-icon.expanded {
+  transform: rotate(180deg);
+}
+
+/* ========================================
+   Icons
+   ======================================== */
+
+.hep-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hep-icon-edit {
+  color: var(--hep-primary-purple);
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.hep-icon-close {
+  color: var(--hep-primary-purple);
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hep-icon-reject {
+  color: var(--hep-reject-red);
+}
+
+/* ========================================
+   Reservation Price Breakdown
+   ======================================== */
+
+.hep-breakdown-container {
+  width: 100%;
+  max-height: 815px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.hep-breakdown-title {
+  font-family: var(--hep-font-serif);
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--hep-text-dark);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.hep-breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  min-height: 27px;
+}
+
+.hep-breakdown-row-label {
+  font-family: var(--hep-font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--hep-text-primary);
+}
+
+.hep-breakdown-row-value {
+  font-family: var(--hep-font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--hep-text-primary);
+}
+
+.hep-breakdown-row-highlight {
+  background-color: rgba(49, 19, 93, 0.05);
+}
+
+.hep-breakdown-row-changed {
+  background-color: rgba(255, 193, 7, 0.15);
+  border-left: 3px solid #ffc107;
+}
+
+.hep-breakdown-row-changed .hep-breakdown-row-value {
+  font-weight: 700;
+  color: var(--hep-primary-purple);
+}
+
+.hep-original-value {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+.hep-changes-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background-color: rgba(255, 193, 7, 0.1);
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+}
+
+.hep-changes-badge {
+  background-color: #ffc107;
+  color: var(--hep-text-dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.hep-changes-text {
+  font-size: 13px;
+  color: var(--hep-text-tertiary);
+}
+
+.hep-breakdown-footnote {
+  font-size: 12px;
+  color: var(--hep-text-primary);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* ========================================
+   Reject Proposal Section
+   ======================================== */
+
+.hep-reject-section {
+  border: 1px dotted var(--hep-gray-border);
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.hep-reject-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.hep-reject-title {
+  font-family: var(--hep-font-serif);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--hep-reject-red);
+}
+
+.hep-reject-warning {
+  font-size: 12px;
+  color: var(--hep-text-primary);
+  margin-bottom: 12px;
+}
+
+.hep-reject-confirmation {
+  font-size: 14px;
+  color: var(--hep-text-primary);
+  margin-bottom: 16px;
+}
+
+.hep-reject-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* ========================================
+   Confirmation Popup
+   ======================================== */
+
+.hep-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.hep-popup {
+  background-color: var(--hep-primary-white);
+  border-radius: 10px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.hep-popup-title {
+  font-family: var(--hep-font-serif);
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--hep-text-dark);
+  margin-bottom: 16px;
+}
+
+.hep-popup-content {
+  font-size: 14px;
+  color: var(--hep-text-primary);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.hep-popup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.hep-popup-actions .hep-btn {
+  min-width: auto;
+  max-width: none;
+}
+
+/* ========================================
+   Toast Notifications
+   ======================================== */
+
+.hep-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  animation: slideIn 300ms ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.hep-toast-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.hep-toast-error {
+  background-color: var(--hep-reject-red);
+  color: white;
+}
+
+.hep-toast-warning {
+  background-color: #ffc107;
+  color: var(--hep-text-dark);
+}
+
+.hep-toast-information {
+  background-color: var(--hep-primary-purple);
+  color: white;
+}
+
+.hep-toast-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.hep-toast-content {
+  font-size: 14px;
+}
+
+/* ========================================
+   Form Groups
+   ======================================== */
+
+.hep-form-group {
+  margin-bottom: 16px;
+}
+
+.hep-form-group label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.hep-form-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.hep-form-row > * {
+  flex: 1;
+}
+
+/* ========================================
+   Section Headers
+   ======================================== */
+
+.hep-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--hep-tag-border);
+}
+
+/* ========================================
+   Actions Row
+   ======================================== */
+
+.hep-actions-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 16px 0;
+}
+
+/* ========================================
+   Schedule Selector
+   ======================================== */
+
+.hep-schedule-selector {
+  padding: 16px;
+  border: 1px dotted var(--hep-gray-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hep-day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.hep-day-button {
+  padding: 6px 4px;
+  border: 1px solid var(--hep-tag-border);
+  border-radius: 4px;
+  background-color: var(--hep-primary-white);
+  cursor: pointer;
+  text-align: center;
+  font-size: 11px;
+  transition: all 200ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hep-day-button:hover {
+  border-color: var(--hep-primary-purple);
+}
+
+.hep-day-button.selected {
+  background-color: var(--hep-primary-purple);
+  color: var(--hep-primary-white);
+  border-color: var(--hep-primary-purple);
+}
+
+.hep-day-button.check-in {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.hep-day-button.check-out {
+  background-color: var(--hep-reject-red);
+  color: white;
+  border-color: var(--hep-reject-red);
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 900px) {
+  .hep-btn-primary {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .hep-form-row {
+    flex-direction: column;
+  }
+
+  .hep-collapsible {
+    width: 100%;
+  }
+
+  .hep-proposal-row,
+  .hep-breakdown-row {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   Animation Classes
+   ======================================== */
+
+.hep-animate-collapse {
+  overflow: hidden;
+  transition: max-height 300ms ease, opacity 300ms ease;
+}
+
+.hep-animate-collapse.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.hep-animate-collapse.expanded {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.hep-hidden {
+  display: none !important;
+}
+
+.hep-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hep-text-center {
+  text-align: center;
+}
+
+.hep-mt-16 {
+  margin-top: 16px;
+}
+
+.hep-mb-16 {
+  margin-bottom: 16px;
+}
+
+.hep-p-16 {
+  padding: 16px;
+}
+
+/* ========================================
+   Host Schedule Selector (Night-based)
+   ======================================== */
+
+.hss-host-schedule-selector {
+  padding: 16px;
+  border: 1px dotted var(--hep-gray-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hss-nights-grid {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.hss-night-cell {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--hep-font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--hep-text-primary);
+  background-color: var(--hep-primary-white);
+  border: 2px solid var(--hep-tag-border);
+  transition: all 200ms ease;
+}
+
+.hss-night-cell:hover:not(.hss-unavailable):not(.hss-disabled) {
+  border-color: var(--hep-primary-purple);
+  background-color: rgba(49, 19, 93, 0.05);
+}
+
+.hss-night-cell.hss-selected {
+  background-color: var(--hep-primary-purple);
+  color: var(--hep-primary-white);
+  border-color: var(--hep-primary-purple);
+}
+
+.hss-night-cell.hss-unavailable {
+  background-color: var(--hep-tag-background);
+  color: var(--hep-text-placeholder);
+  border-color: var(--hep-tag-border);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.hss-night-cell.hss-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hss-night-letter {
+  pointer-events: none;
+}
+
+.hss-selection-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background-color: rgba(49, 19, 93, 0.03);
+  border-radius: 4px;
+  border: 1px solid var(--hep-tag-border);
+}
+
+.hss-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--hep-font-sans);
+  font-size: 14px;
+}
+
+.hss-summary-label {
+  color: var(--hep-text-tertiary);
+  font-weight: 500;
+}
+
+.hss-summary-value {
+  color: var(--hep-text-primary);
+  font-weight: 600;
+}
+
+.hss-summary-value.hss-checkin {
+  color: #28a745;
+}
+
+.hss-summary-value.hss-checkout {
+  color: var(--hep-reject-red);
+}
